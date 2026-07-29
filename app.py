@@ -96,18 +96,32 @@ def verify_csrf():
 
 
 def create_default_admin():
-    email = os.getenv("ADMIN_EMAIL", "admin@bicalho.com.br").strip().lower()
-    password = os.getenv("ADMIN_PASSWORD", "TroqueEssaSenha123!")
-    existing = AdminUser.query.filter_by(email=email).first()
-    if not existing:
-        db.session.add(
-            AdminUser(
-                email=email,
-                password_hash=generate_password_hash(password),
-            )
-        )
-        db.session.commit()
+    email = os.getenv(
+        "ADMIN_EMAIL",
+        "admin@bicalho.com.br"
+    ).strip().lower()
 
+    password = os.getenv(
+        "ADMIN_PASSWORD",
+        "TroqueEssaSenha123!"
+    )
+
+    admin = AdminUser.query.filter_by(email=email).first()
+
+    if not admin:
+        admin = AdminUser(
+            email=email,
+            password_hash=generate_password_hash(password)
+        )
+        db.session.add(admin)
+        print(f"Administrador criado: {email}")
+
+    else:
+        # Atualiza a senha conforme a variável do Railway
+        admin.password_hash = generate_password_hash(password)
+        print(f"Senha do administrador atualizada: {email}")
+
+    db.session.commit()
 
 @app.context_processor
 def inject_company():
