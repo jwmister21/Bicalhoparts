@@ -13,8 +13,19 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 
 database_url = os.getenv("DATABASE_URL", "sqlite:///bicalho.db")
+
 if database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql://", 1)
+    database_url = database_url.replace(
+        "postgres://",
+        "postgresql+psycopg://",
+        1
+    )
+elif database_url.startswith("postgresql://"):
+    database_url = database_url.replace(
+        "postgresql://",
+        "postgresql+psycopg://",
+        1
+    )
 
 app.config.update(
     SECRET_KEY=os.getenv("SECRET_KEY", secrets.token_hex(32)),
