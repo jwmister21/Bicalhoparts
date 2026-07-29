@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Login | Gerenciador Bicalho{% endblock %}
+{% block body %}
+<div class="auth-page">
+  <div class="auth-card">
+    <a href="{{ url_for('home') }}" class="auth-logo">
+      <img src="{{ url_for('static', filename='img/bicalho_logo_azul.png') }}" alt="Bicalho Parts">
+    </a>
+    <div class="auth-title">
+      <span>Área administrativa</span>
+      <h1>Gerenciador do catálogo</h1>
+      <p>Entre para cadastrar imagens, descrições e produtos.</p>
+    </div>
+
+    {% include "flash.html" %}
+
+    <form method="post" class="form">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <label>
+        E-mail
+        <input type="email" name="email" autocomplete="username" required placeholder="seu@email.com">
+      </label>
+      <label>
+        Senha
+        <input type="password" name="password" autocomplete="current-password" required placeholder="Sua senha">
+      </label>
+      <button class="button primary full" type="submit">Entrar no gerenciador</button>
+    </form>
+    <a class="back-link" href="{{ url_for('home') }}">← Voltar para o site</a>
+  </div>
+</div>
+{% endblock %}

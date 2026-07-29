@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <a class="admin-brand" href="{{ url_for('admin_dashboard') }}">
+      <img src="{{ url_for('static', filename='img/bicalho_logo_azul.png') }}" alt="Bicalho Parts">
+    </a>
+    <nav>
+      <a class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}" href="{{ url_for('admin_dashboard') }}">Produtos</a>
+      <a class="{% if request.endpoint in ['admin_product_new', 'admin_product_edit'] %}active{% endif %}" href="{{ url_for('admin_product_new') }}">Cadastrar produto</a>
+      <a href="{{ url_for('home') }}" target="_blank">Ver site</a>
+    </nav>
+    <a class="logout-link" href="{{ url_for('logout') }}">Sair</a>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-top">
+      <div>
+        <span>Gerenciador Bicalho</span>
+        <h1>{% block admin_title %}Catálogo{% endblock %}</h1>
+      </div>
+      <a class="button primary" href="{{ url_for('admin_product_new') }}">+ Novo produto</a>
+    </header>
+
+    {% include "flash.html" %}
+    {% block admin_content %}{% endblock %}
+  </main>
+</div>
+{% endblock %}

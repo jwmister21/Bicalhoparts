@@ -1,0 +1,59 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Produtos | Gerenciador Bicalho{% endblock %}
+{% block admin_title %}Produtos cadastrados{% endblock %}
+
+{% block admin_content %}
+<div class="admin-card">
+  {% if products %}
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Imagem</th>
+          <th>Produto</th>
+          <th>Categoria</th>
+          <th>Status</th>
+          <th class="actions-col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr>
+          <td>
+            <div class="thumb">
+              {% if product.image_data %}
+              <img src="{{ url_for('product_image', product_id=product.id) }}" alt="{{ product.name }}">
+              {% else %}
+              <img src="{{ url_for('static', filename='img/sem-foto.svg') }}" alt="Sem foto">
+              {% endif %}
+            </div>
+          </td>
+          <td>
+            <strong>{{ product.name }}</strong>
+            <small>{{ product.description|truncate(85) }}</small>
+          </td>
+          <td>{{ product.category }}</td>
+          <td><span class="status {{ 'on' if product.is_active else 'off' }}">{{ 'Publicado' if product.is_active else 'Oculto' }}</span></td>
+          <td>
+            <div class="table-actions">
+              <a class="small-button edit" href="{{ url_for('admin_product_edit', product_id=product.id) }}">Editar</a>
+              <form method="post" action="{{ url_for('admin_product_delete', product_id=product.id) }}" onsubmit="return confirm('Excluir este produto?');">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                <button class="small-button delete" type="submit">Excluir</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="admin-empty">
+    <h2>Nenhum produto cadastrado</h2>
+    <p>Cadastre o primeiro produto para ele aparecer no catálogo público.</p>
+    <a class="button primary" href="{{ url_for('admin_product_new') }}">Cadastrar primeiro produto</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

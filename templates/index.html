@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block title %}Bicalho Parts | Peças para Elevadores{% endblock %}
+
+{% block body %}
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div><strong>◉ Atendimento especializado</strong><span>Seg. a Sex. 08h às 18h</span></div>
+    <div><strong>▣ Envio para todo o Brasil</strong><span>Agilidade e segurança</span></div>
+    <a href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener">
+      <strong>◉ Fale conosco no WhatsApp</strong><span>{{ whatsapp_display }}</span>
+    </a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#inicio">
+      <img src="{{ url_for('static', filename='img/bicalho_logo_azul.png') }}" alt="Bicalho Peças para Elevadores">
+    </a>
+
+    <button class="menu-btn" type="button" aria-label="Abrir menu" data-menu-button>☰</button>
+
+    <nav class="nav-links" data-menu>
+      <a href="#inicio">Início</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#empresa">A empresa</a>
+      <a href="#contato">Contato</a>
+      <a class="nav-quote" href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener">Solicitar orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Peças para elevadores multimarcas</span>
+        <h1>Peças e componentes para elevadores com qualidade e confiança</h1>
+        <p>Soluções completas para manutenção, modernização e reposição de elevadores multimarcas.</p>
+        <a class="button primary" href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener">◉ Solicitar orçamento</a>
+      </div>
+      <div class="hero-image" role="img" aria-label="Elevador moderno"></div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="container benefit-grid">
+      <article><span>✓</span><div><strong>Produtos de qualidade</strong><p>Peças testadas e aprovadas</p></div></article>
+      <article><span>☎</span><div><strong>Atendimento especializado</strong><p>Suporte técnico e consultivo</p></div></article>
+      <article><span>▣</span><div><strong>Envio para todo o Brasil</strong><p>Rapidez e segurança</p></div></article>
+      <article><span>▤</span><div><strong>Orçamento personalizado</strong><p>Condições especiais</p></div></article>
+    </div>
+  </section>
+
+  <section class="section categories" id="categorias">
+    <div class="container">
+      <div class="section-heading">
+        <span>Nossas categorias</span>
+        <h2>Encontre a peça certa para o seu elevador</h2>
+      </div>
+
+      <div class="category-grid">
+        <a class="category-card" href="#catalogo" data-category-link="Placas Eletrônicas de Elevadores Multimarcas">
+          <div class="category-photo cat-board"></div>
+          <div class="category-body">
+            <small>Categoria 01</small>
+            <h3>Placas Eletrônicas de Elevadores Multimarcas</h3>
+            <p>Placas eletrônicas para diversas marcas, prontas para manutenção e reposição.</p>
+            <span class="category-action">Ver produtos →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="#catalogo" data-category-link="Inversores de Comandos Para Elevadores">
+          <div class="category-photo cat-inverter"></div>
+          <div class="category-body">
+            <small>Categoria 02</small>
+            <h3>Inversores de Comandos Para Elevadores</h3>
+            <p>Inversores, módulos de comando e componentes para sistemas de elevadores.</p>
+            <span class="category-action">Ver produtos →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="#catalogo" data-category-link="Corrediças e Roldanas">
+          <div class="category-photo cat-pulley"></div>
+          <div class="category-body">
+            <small>Categoria 03</small>
+            <h3>Corrediças e Roldanas</h3>
+            <p>Componentes mecânicos para manutenção preventiva e corretiva.</p>
+            <span class="category-action">Ver produtos →</span>
+          </div>
+        </a>
+
+        <a class="category-card" href="#catalogo" data-category-link="Diversas Peças Multimarcas">
+          <div class="category-photo cat-parts"></div>
+          <div class="category-body">
+            <small>Categoria 04</small>
+            <h3>Diversas Peças Multimarcas</h3>
+            <p>Sensores, botões, contatos, cabos, travas, fechaduras e outros componentes.</p>
+            <span class="category-action">Ver produtos →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section catalog" id="catalogo">
+    <div class="container">
+      <div class="section-heading">
+        <span>Nosso catálogo</span>
+        <h2>Produtos cadastrados</h2>
+        <p>Escolha um produto e solicite seu orçamento diretamente pelo WhatsApp.</p>
+      </div>
+
+      <div class="catalog-tools">
+        <input id="product-search" type="search" placeholder="Buscar produto...">
+        <div class="filter-buttons">
+          <button type="button" class="filter active" data-filter="all">Todos</button>
+          {% for category in categories %}
+          <button type="button" class="filter" data-filter="{{ category }}">{{ loop.index }}</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="product-grid" id="product-grid">
+        {% for product in products %}
+        <article class="product-card" data-name="{{ product.name|lower }}" data-category="{{ product.category }}">
+          <div class="product-image">
+            {% if product.image_data %}
+            <img src="{{ url_for('product_image', product_id=product.id) }}" alt="{{ product.name }}">
+            {% else %}
+            <img src="{{ url_for('static', filename='img/sem-foto.svg') }}" alt="Produto sem imagem">
+            {% endif %}
+          </div>
+          <div class="product-info">
+            <small>{{ product.category }}</small>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <a class="button quote-only" href="{{ url_for('product_quote', product_id=product.id) }}" target="_blank" rel="noopener">Solicitar orçamento</a>
+          </div>
+        </article>
+        {% else %}
+        <div class="empty-state">
+          <strong>O catálogo está sendo preparado.</strong>
+          <p>Entre em contato pelo WhatsApp para consultar as peças disponíveis.</p>
+          <a class="button primary" href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de consultar as peças disponíveis." target="_blank" rel="noopener">Solicitar orçamento</a>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="no-results" id="no-results" hidden>Nenhum produto encontrado.</div>
+    </div>
+  </section>
+
+  <section class="section about" id="empresa">
+    <div class="container about-grid">
+      <div>
+        <span class="eyebrow">Bicalho Parts</span>
+        <h2>Soluções completas em peças e componentes</h2>
+        <p>A Bicalho Parts é especializada no fornecimento de peças e componentes para elevadores multimarcas. Trabalhamos para garantir segurança, desempenho e durabilidade aos equipamentos de nossos clientes.</p>
+        <div class="about-list">
+          <span>✓ Atendimento especializado</span>
+          <span>✓ Produtos multimarcas</span>
+          <span>✓ Envio para todo o Brasil</span>
+        </div>
+      </div>
+      <div class="about-photo"></div>
+    </div>
+  </section>
+
+  <section class="quote-banner">
+    <div class="container quote-inner">
+      <div>
+        <h2>Não encontrou o que precisa?</h2>
+        <p>Fale com nossa equipe e solicite um orçamento personalizado.</p>
+      </div>
+      <a class="button primary" href="https://wa.me/{{ whatsapp_number }}?text=Olá! Não encontrei a peça que preciso e gostaria de solicitar um orçamento." target="_blank" rel="noopener">◉ Solicitar orçamento agora</a>
+    </div>
+  </section>
+</main>
+
+<footer id="contato">
+  <div class="container footer-grid">
+    <div>
+      <img class="footer-logo" src="{{ url_for('static', filename='img/bicalho_logo_azul.png') }}" alt="Bicalho Parts">
+      <p>Soluções completas em peças e componentes para elevadores multimarcas.</p>
+    </div>
+    <div>
+      <h3>Navegação</h3>
+      <a href="#inicio">Início</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#empresa">A empresa</a>
+    </div>
+    <div>
+      <h3>Categorias</h3>
+      {% for category in categories %}
+      <a href="#catalogo">{{ category }}</a>
+      {% endfor %}
+    </div>
+    <div>
+      <h3>Contato</h3>
+      <a href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener">WhatsApp: {{ whatsapp_display }}</a>
+      <a href="mailto:{{ company_email }}">{{ company_email }}</a>
+      <a href="{{ instagram_url }}" target="_blank" rel="noopener">Instagram: {{ instagram }}</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Bicalho Parts. Todos os direitos reservados.</span>
+    <a href="{{ url_for('login') }}">Área administrativa</a>
+  </div>
+</footer>
+
+<a class="floating-whatsapp" href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener" aria-label="WhatsApp">◉</a>
+{% endblock %}

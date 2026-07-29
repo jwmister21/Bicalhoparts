@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f8fafc"/>
+  <rect x="210" y="135" width="380" height="330" rx="26" fill="#eef5ff" stroke="#0b4dbb" stroke-width="8"/>
+  <path d="M320 415V235h160v180" fill="none" stroke="#0b4dbb" stroke-width="16"/>
+  <path d="M400 235v180" stroke="#0b4dbb" stroke-width="10"/>
+  <path d="M385 190l15-20 15 20M385 210l15 20 15-20" fill="none" stroke="#0b4dbb" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="520" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="#64748b">Produto sem imagem</text>
+</svg>
