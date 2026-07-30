@@ -53,3 +53,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const widget = document.querySelector("[data-whatsapp-widget]");
+  const popup = document.querySelector("[data-whatsapp-popup]");
+  const closeButton = document.querySelector("[data-whatsapp-close]");
+  const floatingButton = document.querySelector("[data-whatsapp-button]");
+
+  if (!widget || !popup || !closeButton || !floatingButton) {
+    return;
+  }
+
+  const storageKey = "bicalhoWhatsappPopupClosedAt";
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+
+  function wasClosedRecently() {
+    const closedAt = localStorage.getItem(storageKey);
+
+    if (!closedAt) {
+      return false;
+    }
+
+    const elapsedTime = Date.now() - Number(closedAt);
+
+    return elapsedTime < oneDayInMilliseconds;
+  }
+
+  function showPopup() {
+    popup.classList.add("is-visible");
+  }
+
+  function hidePopup() {
+    popup.classList.remove("is-visible");
+  }
+
+  if (!wasClosedRecently()) {
+    window.setTimeout(showPopup, 2500);
+  }
+
+  closeButton.addEventListener("click", function () {
+    hidePopup();
+    localStorage.setItem(storageKey, String(Date.now()));
+  });
+
+  floatingButton.addEventListener("mouseenter", function () {
+    showPopup();
+  });
+
+  floatingButton.addEventListener("focus", function () {
+    showPopup();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      hidePopup();
+    }
+  });
+});
