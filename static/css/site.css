@@ -38,7 +38,7 @@ button,input,select,textarea{font:inherit}
 .eyebrow,.section-heading>span{display:block;color:var(--blue);font-weight:900;text-transform:uppercase;letter-spacing:.09em;font-size:12px;margin-bottom:12px}
 .hero h1{font-size:clamp(39px,5vw,62px);line-height:1.03;letter-spacing:-.05em;color:var(--ink);max-width:660px}
 .hero p{font-size:17px;line-height:1.7;color:var(--text);margin:20px 0 28px;max-width:610px}
-.hero-image{background:linear-gradient(90deg,rgba(255,255,255,.4),transparent 30%),url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85') center/cover}
+.hero-image{background:linear-gradient(90deg,rgba(255,255,255,.4),transparent 30%),url("../img/banner.jpg") center/cover}
 .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:0;border-radius:7px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s}
 .button:hover{transform:translateY(-2px)}
 .primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(11,77,187,.2)}
@@ -60,10 +60,10 @@ button,input,select,textarea{font:inherit}
 .category-card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 8px 25px rgba(15,23,42,.05);transition:.25s}
 .category-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
 .category-photo{height:210px;background-size:cover;background-position:center}
-.cat-board{background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80')}
-.cat-inverter{background-image:url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80')}
-.cat-pulley{background-image:url('https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=800&q=80')}
-.cat-parts{background-image:url('https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=800&q=80')}
+.cat-board{background-image:url("../img/placas.jpg")}
+.cat-inverter{background-image:url("../img/inversores.jpg")}
+.cat-pulley{background-image:url("../img/corredicas.jpg")}
+.cat-parts{background-image:url("../img/pecas.jpg")}
 .category-body{text-align:center;padding:26px 20px 20px}
 .category-body small{color:var(--blue);font-weight:900;text-transform:uppercase;font-size:10px;letter-spacing:.09em}
 .category-body h3{font-size:18px;color:var(--ink);line-height:1.25;margin:9px 0 12px;min-height:68px}
@@ -77,18 +77,79 @@ button,input,select,textarea{font:inherit}
 .filter{height:40px;min-width:42px;border:1px solid var(--line);background:#fff;border-radius:6px;font-weight:800;color:var(--text);cursor:pointer}
 .filter.active{background:var(--blue);border-color:var(--blue);color:#fff}
 .product-grid{
-display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:24px
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
 }
-.product-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.25s;min-width:0;}
+.product-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  transition:.25s;
+}
 .product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.product-image{width:100%;height:260px;background:#fff;display:flex;align-items:center;justify-content:center;padding:16px;border-bottom:1px solid var(--line);overflow:hidden;}
-.product-image img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;}
-.product-info{position:relative;z-index:2;display:flex;flex-direction:column;flex:1;padding:22px;background:#fff;}
-.product-info small{display:block;font-size:11px;font-weight:900;color:var(--blue);text-transform:uppercase;letter-spacing:.07em;line-height:1.4;margin-bottom:8px;}
-.product-info h3{font-size:20px;line-height:1.3;color:var(--ink);margin:0 0 12px;}
-.product-info p{font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 20px;overflow-wrap:break-word;}
+.product-image{
+  width:100%;
+  height:260px;
+  flex:0 0 260px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+
+.product-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+.product-info{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-width:0;
+  padding:22px;
+  background:#fff;
+}
+
+.product-info small{
+  display:block;
+  font-size:11px;
+  font-weight:900;
+  color:var(--blue);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  line-height:1.4;
+  margin-bottom:8px;
+  overflow-wrap:anywhere;
+}
+
+.product-info h3{
+  font-size:20px;
+  line-height:1.3;
+  color:var(--ink);
+  margin:0 0 12px;
+  overflow-wrap:anywhere;
+}
+
+.product-info p{
+  font-size:14px;
+  line-height:1.7;
+  color:var(--muted);
+  margin:0 0 20px;
+  overflow-wrap:anywhere;
+}
 .quote-only{margin-top:auto;background:var(--blue);color:#fff;width:100%}
 .empty-state,.no-results{grid-column:1/-1;text-align:center;padding:48px 20px;background:#fff;border:1px dashed #cbd5e1;border-radius:10px}
 .empty-state strong{display:block;font-size:22px;color:var(--ink);margin-bottom:8px}
@@ -98,7 +159,7 @@ gap:24px
 .about h2{font-size:clamp(33px,4vw,48px);line-height:1.05;color:var(--ink);letter-spacing:-.04em}
 .about p{margin-top:17px;line-height:1.75;color:var(--muted)}
 .about-list{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;color:var(--blue);font-weight:800;font-size:13px}
-.about-photo{height:440px;border-radius:8px;background:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85') center/cover}
+.about-photo{height:440px;border-radius:8px;background:url("../img/empresa.jpg") center/cover}
 .quote-banner{padding:18px 0 68px}
 .quote-inner{border:1px solid var(--line);border-radius:9px;box-shadow:0 8px 24px rgba(15,23,42,.06);padding:24px 34px;display:flex;align-items:center;justify-content:space-between;gap:30px}
 .quote-inner h2{color:var(--ink);font-size:25px}
@@ -181,7 +242,7 @@ footer{border-top:1px solid var(--line);background:#fff;padding:42px 0 20px}
   .nav-links{display:none;position:absolute;left:0;right:0;top:84px;background:#fff;border-bottom:1px solid var(--line);padding:20px;flex-direction:column;align-items:stretch}
   .nav-links.open{display:flex}
   .hero-grid{grid-template-columns:1fr}.hero-copy{padding:60px 0}.hero-image{height:380px}
-  .benefit-grid,.category-grid,.product-grid{grid-template-columns:repeat(2,1fr)}
+  .benefit-grid,.category-grid,.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .about-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:repeat(2,1fr)}
   .admin-shell{grid-template-columns:1fr}.admin-sidebar{position:relative;height:auto;flex-direction:row;align-items:center;gap:15px;overflow:auto}
   .admin-brand img{width:180px;height:50px;margin:0}.admin-sidebar nav{display:flex}.logout-link{margin:0 0 0 auto}.admin-main{padding:24px}
@@ -199,6 +260,9 @@ footer{border-top:1px solid var(--line);background:#fff;padding:42px 0 20px}
   .admin-sidebar{display:block}.admin-brand img{margin-bottom:12px}.admin-sidebar nav{overflow:auto}.logout-link{display:inline-block;margin-top:10px}
   .admin-main{padding:15px}.admin-top{align-items:flex-start;flex-direction:column}.admin-top .button{width:100%}
   .product-form{padding:18px}.form-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.form-actions{flex-direction:column-reverse}.form-actions .button{width:100%}
+  .product-image{height:240px;flex-basis:240px}
+  .product-info{padding:18px}
+  .product-info h3{font-size:18px}
 }
 /* =========================================================
    WIDGET PROFISSIONAL DO WHATSAPP
