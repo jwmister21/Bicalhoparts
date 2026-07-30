@@ -11,7 +11,8 @@
   --green:#25d366;
   --danger:#dc2626;
   --container:1180px;
-  --shadow:0 18px 50px rgba(15,23,42,.10);
+  --shadow:0 22px 55px rgba(15,23,42,.12);
+  --shadow-soft:0 10px 30px rgba(15,23,42,.07);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -57,9 +58,9 @@ button,input,select,textarea{font:inherit}
 .section-heading p{margin-top:13px;color:var(--muted);line-height:1.7}
 .categories{background:#fff}
 .category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.category-card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 8px 25px rgba(15,23,42,.05);transition:.25s}
-.category-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.category-photo{height:210px;background-size:cover;background-position:center}
+.category-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.category-card:hover{transform:translateY(-7px);box-shadow:var(--shadow);border-color:#cbd8ee}
+.category-photo{height:230px;background-size:cover;background-position:center;transition:transform .35s ease}
 .cat-board{background-image:url("../img/placas.jpg")}
 .cat-inverter{background-image:url("../img/inversores.jpg")}
 .cat-pulley{background-image:url("../img/corredicas.jpg")}
@@ -87,30 +88,38 @@ button,input,select,textarea{font:inherit}
   min-width:0;
   background:#fff;
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:16px;
   overflow:hidden;
-  transition:.25s;
+  box-shadow:0 8px 26px rgba(15,23,42,.06);
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
 }
-.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.product-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 24px 55px rgba(15,23,42,.14);
+  border-color:#c9d7ef;
+}
 .product-image{
   width:100%;
-  height:260px;
-  flex:0 0 260px;
-  background:#fff;
+  height:390px;
+  flex:0 0 390px;
+  background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:16px;
+  padding:10px;
   border-bottom:1px solid var(--line);
   overflow:hidden;
 }
-
 .product-image img{
   display:block;
   width:100%;
   height:100%;
   object-fit:contain;
   object-position:center;
+  transition:transform .4s ease;
+}
+.product-card:hover .product-image img{
+  transform:scale(1.045);
 }
 .product-info{
   position:relative;
@@ -119,38 +128,52 @@ button,input,select,textarea{font:inherit}
   flex-direction:column;
   flex:1;
   min-width:0;
-  padding:22px;
+  padding:24px 24px 26px;
   background:#fff;
 }
-
 .product-info small{
   display:block;
-  font-size:11px;
-  font-weight:900;
+  width:fit-content;
+  max-width:100%;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--blue-soft);
   color:var(--blue);
+  font-size:10px;
+  font-weight:900;
   text-transform:uppercase;
-  letter-spacing:.07em;
-  line-height:1.4;
-  margin-bottom:8px;
+  letter-spacing:.08em;
+  line-height:1.35;
+  margin-bottom:14px;
   overflow-wrap:anywhere;
 }
-
 .product-info h3{
-  font-size:20px;
-  line-height:1.3;
+  font-size:22px;
+  line-height:1.25;
   color:var(--ink);
   margin:0 0 12px;
+  letter-spacing:-.02em;
   overflow-wrap:anywhere;
 }
-
 .product-info p{
   font-size:14px;
-  line-height:1.7;
+  line-height:1.72;
   color:var(--muted);
-  margin:0 0 20px;
+  margin:0 0 22px;
   overflow-wrap:anywhere;
 }
-.quote-only{margin-top:auto;background:var(--blue);color:#fff;width:100%}
+.quote-only{
+  margin-top:auto;
+  width:100%;
+  min-height:50px;
+  border-radius:9px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-dark));
+  color:#fff;
+  box-shadow:0 10px 22px rgba(11,77,187,.2);
+}
+.quote-only:hover{
+  box-shadow:0 14px 28px rgba(11,77,187,.28);
+}
 .empty-state,.no-results{grid-column:1/-1;text-align:center;padding:48px 20px;background:#fff;border:1px dashed #cbd5e1;border-radius:10px}
 .empty-state strong{display:block;font-size:22px;color:var(--ink);margin-bottom:8px}
 .empty-state p{margin-bottom:20px;color:var(--muted)}
@@ -260,9 +283,9 @@ footer{border-top:1px solid var(--line);background:#fff;padding:42px 0 20px}
   .admin-sidebar{display:block}.admin-brand img{margin-bottom:12px}.admin-sidebar nav{overflow:auto}.logout-link{display:inline-block;margin-top:10px}
   .admin-main{padding:15px}.admin-top{align-items:flex-start;flex-direction:column}.admin-top .button{width:100%}
   .product-form{padding:18px}.form-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.form-actions{flex-direction:column-reverse}.form-actions .button{width:100%}
-  .product-image{height:240px;flex-basis:240px}
-  .product-info{padding:18px}
-  .product-info h3{font-size:18px}
+  .product-image{height:320px;flex-basis:320px}
+  .product-info{padding:20px}
+  .product-info h3{font-size:20px}
 }
 /* =========================================================
    WIDGET PROFISSIONAL DO WHATSAPP
@@ -518,4 +541,17 @@ footer{border-top:1px solid var(--line);background:#fff;padding:42px 0 20px}
     width: 58px;
     height: 58px;
   }
+}
+
+.category-card:hover .category-photo{transform:scale(1.025)}
+
+@media(max-width:1000px) and (min-width:651px){
+  .product-image{height:340px;flex-basis:340px}
+}
+
+@media(max-width:420px){
+  .product-image{height:285px;flex-basis:285px;padding:8px}
+  .product-info{padding:18px}
+  .product-info h3{font-size:19px}
+  .product-info p{font-size:13px;line-height:1.65}
 }
