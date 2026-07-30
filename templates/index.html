@@ -211,5 +211,67 @@
   </div>
 </footer>
 
-<a class="floating-whatsapp" href="https://wa.me/{{ whatsapp_number }}?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener" aria-label="WhatsApp">◉</a>
+<!-- Caixa profissional do WhatsApp -->
+<div class="whatsapp-widget" data-whatsapp-widget>
+
+  <div class="whatsapp-popup" data-whatsapp-popup>
+    <button
+      class="whatsapp-popup-close"
+      type="button"
+      aria-label="Fechar atendimento"
+      data-whatsapp-close
+    >
+      ×
+    </button>
+
+    <div class="whatsapp-popup-header">
+      <div class="whatsapp-popup-logo">
+        <img
+          src="{{ url_for('static', filename='img/bicalho_logo_azul.png') }}"
+          alt="Bicalho Parts"
+        >
+      </div>
+
+      <div class="whatsapp-popup-company">
+        <strong>Bicalho Parts</strong>
+        <span>
+          <i></i>
+          Online agora
+        </span>
+      </div>
+    </div>
+
+    <div class="whatsapp-popup-content">
+      <p>
+        Olá! Precisa de peças ou componentes para elevadores?
+      </p>
+
+      <p>
+        Nossa equipe está pronta para ajudar você a encontrar a peça certa.
+      </p>
+
+      <a
+        class="whatsapp-popup-button"
+        href="https://wa.me/{{ whatsapp_number }}?text=Olá! Vim pelo site da Bicalho Parts e gostaria de solicitar um orçamento."
+        target="_blank"
+        rel="noopener"
+      >
+        <span>◉</span>
+        Iniciar conversa
+      </a>
+    </div>
+  </div>
+
+  <a
+    class="floating-whatsapp"
+    href="https://wa.me/{{ whatsapp_number }}?text=Olá! Vim pelo site da Bicalho Parts e gostaria de solicitar um orçamento."
+    target="_blank"
+    rel="noopener"
+    aria-label="Falar com a Bicalho Parts pelo WhatsApp"
+    data-whatsapp-button
+  >
+    <span>◉</span>
+  </a>
+
+</div>
 {% endblock %}
